@@ -1,3 +1,5 @@
+# https://developer.amazon.com/en-US/docs/alexa/alexa-skills-kit-sdk-for-python/develop-your-first-skill.html
+
 from ask_sdk_core.skill_builder import SkillBuilder
 
 
