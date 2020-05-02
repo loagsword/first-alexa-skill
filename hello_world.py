@@ -98,3 +98,13 @@ class AllExceptionHandler(AbstractExceptionHandler):
         return handler_input.response_builder.response
 
 
+sb.add_request_handler(LaunchRequestHandler())
+sb.add_request_handler(HelloWorldIntentHandler())
+sb.add_request_handler(HelpIntentHandler())
+sb.add_request_handler(CancelAndStopIntentHandler())
+sb.add_request_handler(SessionEndedRequestHandler())
+
+sb.add_exception_handler(AllExceptionHandler())
+
+handler = sb.lambda_handler()
+
