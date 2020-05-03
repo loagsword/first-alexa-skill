@@ -64,8 +64,6 @@ def session_ended_request_handler(handler_input):
     return handler_input.response_builder.response
 
 
-from ask_sdk_core.dispatch_components import AbstractExceptionHandler
-
 @sb.exception_handler(can_handle_func=lambda i, e: True)
 def all_exception_handler(handler_input, exception):
     # type: (HandlerInput, Exception) -> Response
@@ -77,13 +75,4 @@ def all_exception_handler(handler_input, exception):
     return handler_input.response_builder.response
 
 
-sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(HelloWorldIntentHandler())
-sb.add_request_handler(HelpIntentHandler())
-sb.add_request_handler(CancelAndStopIntentHandler())
-sb.add_request_handler(SessionEndedRequestHandler())
-
-sb.add_exception_handler(AllExceptionHandler())
-
 handler = sb.lambda_handler()
-
