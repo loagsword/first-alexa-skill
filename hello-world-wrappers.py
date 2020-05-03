@@ -32,18 +32,14 @@ def hello_world_intent_handler(handler_input):
     return handler_input.response_builder.response
 
 
-class HelpIntentHandler(AbstractRequestHandler):
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return is_intent_name("AMAZON.HelpIntent")(handler_input)
+@sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
+def help_intent_handler(handler_input):
+    # type: (HandlerInput) -> Response
+    speech_text = "You can say hello to me!"
 
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        speech_text = "You can say hello to me!"
-
-        handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
-            SimpleCard("Hello World", speech_text))
-        return handler_input.response_builder.response
+    handler_input.response_builder.speak(speech_text).ask(speech_text).set_card(
+        SimpleCard("Hello World", speech_text))
+    return handler_input.response_builder.response
 
 
 class CancelAndStopIntentHandler(AbstractRequestHandler):
