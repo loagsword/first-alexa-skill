@@ -56,16 +56,12 @@ def cancel_and_stop_intent_handler(handler_input):
     return handler_input.response_builder.response
 
 
-class SessionEndedRequestHandler(AbstractRequestHandler):
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return is_request_type("SessionEndedRequest")(handler_input)
+@sb.request_handler(can_handle_func=is_request_type("SessionEndedRequest"))
+def session_ended_request_handler(handler_input):
+    # type: (HandlerInput) -> Response
+    # any cleanup logic goes here
 
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        # any cleanup logic goes here
-
-        return handler_input.response_builder.response
+    return handler_input.response_builder.response
 
 
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
